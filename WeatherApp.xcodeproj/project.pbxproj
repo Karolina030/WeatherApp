@@ -11,6 +11,8 @@
 		E2321D0126417E7E00F25269 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2321D0026417E7E00F25269 /* ContentView.swift */; };
 		E2321D0326417E8100F25269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2321D0226417E8100F25269 /* Assets.xcassets */; };
 		E2321D0626417E8100F25269 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2321D0526417E8100F25269 /* Preview Assets.xcassets */; };
+		E2321D0F264191EF00F25269 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2321D0E264191EF00F25269 /* WeatherModel.swift */; };
+		E2321D122641936E00F25269 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2321D112641936E00F25269 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		E2321D0226417E8100F25269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2321D0526417E8100F25269 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2321D0726417E8100F25269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2321D0E264191EF00F25269 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		E2321D112641936E00F25269 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				E2321CFE26417E7E00F25269 /* WeatherAppApp.swift */,
 				E2321D0026417E7E00F25269 /* ContentView.swift */,
+				E2321D0E264191EF00F25269 /* WeatherModel.swift */,
+				E2321D112641936E00F25269 /* WeatherViewModel.swift */,
 				E2321D0226417E8100F25269 /* Assets.xcassets */,
 				E2321D0726417E8100F25269 /* Info.plist */,
 				E2321D0426417E8100F25269 /* Preview Content */,
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2321D0126417E7E00F25269 /* ContentView.swift in Sources */,
+				E2321D122641936E00F25269 /* WeatherViewModel.swift in Sources */,
+				E2321D0F264191EF00F25269 /* WeatherModel.swift in Sources */,
 				E2321CFF26417E7E00F25269 /* WeatherAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
