@@ -1,1 +1,1 @@
-Weather App in Swift UI
+Weather app in Swift UI
