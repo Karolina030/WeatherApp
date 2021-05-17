@@ -11,9 +11,9 @@ class WeatherViewModel:ObservableObject {
     
     @Published private(set) var model:WeatherModel = WeatherModel(cities: ["Venice", "Paris", "Berlin", "Warsaw", "Barcelona", "London", "Prague", "Venice", "Paris", "Berlin", "Warsaw", "Barcelona", "London", "Prague"])
     
-//    func refreshIndex(_ index: Int){
-//        model.refreshIndex(index: index)
-//    }
+    func refreshIndex(index: Int)-> Int{
+        return model.refreshIndex(index: index)
+    }
     
     //eksport rekordow z modelu do widoku
     var records: Array<WeatherModel.WeatherRecord>{

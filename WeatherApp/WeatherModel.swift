@@ -36,7 +36,7 @@ struct WeatherModel{
     struct WeatherRecord:Identifiable {
         var id: UUID = UUID()
         var cityName: String
-        var weatherState: String = "Light Cloud"
+        var weatherState: String = "Heavy Rain"
         var temperature: Float = Float.random(in: -10.0 ... 30.0)
         var humidity:Float = Float.random(in: 0...100)
         var windSpeed:Float = Float.random(in: 0...20)
@@ -50,16 +50,18 @@ struct WeatherModel{
         
     }
     
+    //metoda do odświeżania tamperatury
     mutating func refresh(record: WeatherRecord, i:Int){
         records[i].temperature = Float.random(in: -10.0 ... 30.0)
         print("Refrashing record: \(record)")
     }
 
-//    mutating func refreshIndex(index: Int)->Int{
-//        if index>=3{
-//            return 0
-//        }else{
-//            return index+1
-//        }
-//    }
+    //metoda służąca do cyklicznego zmieniania wyświetlanych parametrów po kliknięciu
+    mutating func refreshIndex(index: Int)->Int{
+        if index>=3{
+            return 0
+        }else{
+            return index+1
+        }
+    }
 }

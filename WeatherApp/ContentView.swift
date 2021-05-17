@@ -17,9 +17,9 @@ struct ContentView: View {
                 ForEach(0..<viewModel.records.count){iter in
                     WeatherRecordView(record: viewModel.records[iter], viewModel: viewModel, iter:iter)
                     
-                }.frame(height: 60) //ustalenie wysokości komórek
-
+                }
             }.padding()
+            //padding w celu uzyskania marginesów
         }
     }
 }
@@ -29,25 +29,26 @@ struct WeatherRecordView: View{
     var viewModel = WeatherViewModel()
     var iter: Int
     @State var index = 0
+    //stałe
+    let rectangleRadius = 25.0
+    let scale = 1
+    let cellHeight = 60.0
+    let textWidth = 160.0
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerRadius: 25.0)
+            RoundedRectangle(cornerRadius: CGFloat(rectangleRadius))
                 .stroke()
             HStack{
                 GeometryReader{geometry in
                     Text(record.weatherIcon)
-                        .padding(-2)
-                        .font(.system(size:0.9*geometry.size.width))
+                        .font(.system(size:CGFloat(scale)*geometry.size.width))
                 }
                 Spacer() // uzyskanie wyrównania do lewej
+                //wyrównanie tekstu do lewej
                 VStack(alignment: .leading){
                     Text(record.cityName)
                         .onTapGesture {
-                            if index>=3{
-                                index = 0
-                            }else{
-                                index = index+1
-                            }
+                            index = viewModel.refreshIndex(index:index)
                         }
                     
                     switch index{
@@ -70,14 +71,14 @@ struct WeatherRecordView: View{
                         Text("Temperature: \(record.temperature, specifier: "%.1f")°C")
                             .font(.caption)
                     }
-                }.frame(width: 160, height: 60)
-
+                }.frame(width: CGFloat(textWidth))
                 Spacer() // uzyskanie wyrównania do prawej
                 Text("🔄")
                     .font(.largeTitle).onTapGesture {
                         viewModel.refresh(record:record, i:iter)
                     }
-            }.frame(width: 270, height: 60).offset(x: 0, y: 0)
+            }.frame(height: CGFloat(cellHeight)).padding(.trailing, 15).padding(.leading, 15)
+            //ustalenie wysokości komórek oraz marginesów
         }
     }
 }
