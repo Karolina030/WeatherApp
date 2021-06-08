@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct WeatherAppApp: App {
     var viewModel = WeatherViewModel()
+    var locationViewModel = LocationViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: viewModel)
