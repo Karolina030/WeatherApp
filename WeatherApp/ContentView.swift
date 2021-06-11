@@ -14,20 +14,23 @@ struct ContentView: View {
     @StateObject var viewModel = WeatherViewModel()
         
     var body: some View {
-        ZStack{
-            LinearGradient(gradient: Gradient(colors: [.white, .blue]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
-            ScrollView(.vertical){ // możliwość przewijanie listy miast
-                
-                VStack(alignment: .leading){
+        NavigationView{
+            ZStack{
 
-                    ForEach(0..<viewModel.records.count){iter in
-                        WeatherRecordView(record: viewModel.records[iter], viewModel: viewModel, iter:iter)
+                    VStack(alignment: .leading){
+
+                        List(viewModel.records) { record in
+                            NavigationLink(destination: WeatherDetail(viewModel: viewModel, record:record)) {
+                                WeatherRecordView(record: record, viewModel: viewModel)
+                            }
+                        }
                         
-                    }
-                }.padding()
-                //padding w celu uzyskania marginesów
-            }
 
+                    }
+                    //padding w celu uzyskania marginesów
+         //       }
+
+            }.navigationTitle("Weather")
         }
         
     }
@@ -37,11 +40,10 @@ struct WeatherRecordView: View{
     
     var record: WeatherModel.WeatherRecord
     var viewModel = WeatherViewModel()
-    var iter: Int
     @State var index = 0
     //stałe
     let rectangleRadius = 25.0
-    let scale = 0.8
+    let scale = 1
     let cellHeight = 60.0
     let textWidth = 130.0
     @State private var showingSheet = false
@@ -70,12 +72,11 @@ struct WeatherRecordView: View{
     var body: some View {
     
         return ZStack{
-            RoundedRectangle(cornerRadius: CGFloat(rectangleRadius))
-                .stroke()
+
             HStack{
                 GeometryReader{geometry in
                     Text(record.weatherIcon)
-                        .font(.system(size: CGFloat(scale)*geometry.size.height))
+                        .font(.system(size: CGFloat(scale)*geometry.size.width))
                 }
                 Spacer() // uzyskanie wyrównania do lewej
                 //wyrównanie tekstu do lewej
@@ -83,7 +84,7 @@ struct WeatherRecordView: View{
                     Text(record.cityName)
                         .onTapGesture {
                             index = viewModel.refreshIndex(index:index)
-                        }
+                        }.font(/*@START_MENU_TOKEN@*/.footnote/*@END_MENU_TOKEN@*/)
                     
                     switch index{
                     case 0:
@@ -106,17 +107,14 @@ struct WeatherRecordView: View{
                             .font(.caption)
                     }
                 }.frame(width: CGFloat(textWidth))
-                Spacer() // uzyskanie wyrównania do prawej
                 Text("🔄")
                     .font(.system(size: 25.0)).onTapGesture {
-                        viewModel.refresh(record:record, i:iter)
+                        viewModel.refresh(record:record)
                     }
-                Button {
-                    showingSheet = true
-                } label: {
-                    Text("🗺").font(.system(size: 25.0))
-                }
-                .sheet(isPresented: $showingSheet, content: {
+                Text("🗺")
+                    .font(.system(size: 25.0)).onTapGesture {
+                        showingSheet = true
+                    }.sheet(isPresented: $showingSheet, content: {
                         VStack{
                             Map(coordinateRegion: $region, annotationItems: places) { place in
                             MapPin(coordinate: place.coordinate)
@@ -140,7 +138,7 @@ struct WeatherRecordView: View{
                     ]
                 }
 
-            }.frame(height: CGFloat(cellHeight)).padding(.trailing, 15).padding(.leading, 15)
+            }
             //ustalenie wysokości komórek oraz marginesów
         }
     }

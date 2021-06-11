@@ -14,7 +14,7 @@ import Foundation
 // MARK: - MetaWeatherResponseLocationElement
 struct MetaWeatherResponseLocationElement: Decodable {
     let distance: Int
-    let title: String?
+    let title: String
     let locationType: LocationType?
     let woeid: Int
     let lattLong: String?
@@ -31,5 +31,4 @@ struct MetaWeatherResponseLocationElement: Decodable {
     }
 }
 
-//typealias MetaWeatherResponseLocation = [MetaWeatherResponseLocationElement]
 
